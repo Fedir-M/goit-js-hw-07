@@ -1,51 +1,34 @@
-console.log("=========================")
-console.log("Задача 2. Склад")
-console.log("===========================")
+const images = [
+  {
+    url: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    alt: "White and Black Long Fur Cat",
+  },
+  {
+    url: "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    alt: "Orange and White Koi Fish Near Yellow Koi Fish",
+  },
+  {
+    url: "https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+    alt: "Group of Horses Running",
+  },
+  {
+    url: "https://images.pexels.com/photos/66898/elephant-cub-tsavo-kenya-66898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    alt: "Elephant Beside on Baby Elephant",
+  },
+  {
+    url: "https://images.pexels.com/photos/37833/rainbow-lorikeet-parrots-australia-rainbow-37833.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    alt: "Blue Geeen and Orange Parrot",
+  },
+  {
+    url: "https://images.pexels.com/photos/247376/pexels-photo-247376.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    alt: "Zebras on Zebra",
+  },
+];
 
-//TODO Створи клас Storage, який створюватиме об'єкти для управління складом товарів. Клас очікує лише один аргумент — початковий масив товарів, який записується до створеного об'єкта в приватну властивість items.
+const galleryList = document.querySelector(".gallery");
 
-//TODO Оголоси наступні методи класу:
 
-//TODO getItems() — повертає масив поточних товарів у приватній властивості items.
-//TODO addItem(newItem) — приймає новий товар newItem і додає його до масиву товарів у приватну властивість items об'єкта.
-//TODO removeItem(itemToRemove) — приймає рядок з назвою товару itemToRemove і видаляє його з масиву товарів у приватній властивості items об'єкта.
+const galleryItem = images.map(({url, alt}) => `<li><img class="gallery__image" src="${url}" alt="${alt}" width="360" heigth="300" /></li>`).join('');
 
-class Storage {
-    #items;
 
-    constructor(newStorage) {
-        this.#items = newStorage;
-      }
-
-    getItems() {
-        return this.#items;
-    }
-
-    addItem(newItem) {
-        this.#items.push(newItem);
-    }
-
-    removeItem(itemToRemove) {
-            const findIndexToRemove = this.#items.indexOf(itemToRemove);
-        
-            if (findIndexToRemove !== -1) {
-              this.#items.splice(findIndexToRemove, 1);
-              return this.#items;
-            }
-    }
-}
-
-//* Візьми код нижче з ініціалізацією екземпляра й викликами методів і встав його після оголошення класу для перевірки коректності роботи. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
-
-const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
-
-storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-
-storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
-
-const storage1 = new Storage([])
-const storage2 = new Storage(["Kyiv", "Lviv"])
-
+galleryList.insertAdjacentHTML('beforeend', galleryItem)

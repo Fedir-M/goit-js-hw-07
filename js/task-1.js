@@ -1,44 +1,24 @@
-console.log("Задача 1. Акаунт користувача")
-console.log("===========================")
+//* Variant 1
 
-//TODO Перед звільненням розробник зламав вихідний код управління акаунтами користувачів нашого сервісу доставки їжі. Виконай рефакторинг методів об'єкта customer, розставивши відсутні this під час звернення до властивостей об'єкта.
+// const itemsCategories = document.querySelectorAll(".item");
+// console.log(itemsCategories);
 
-//TODO Використай цей стартовий код і виконай рефакторинг. Після оголошення об'єкта ми додали виклики методів. У консоль будуть виведені результати їх роботи. Будь ласка, нічого там не змінюй.
+// console.log(itemsCategories.length);
+// console.log([...itemsCategories]);
 
-const customer = {
-  username: "Mango",
-  balance: 24000,
-  discount: 0.1,
-  orders: ["Burger", "Pizza", "Salad"],
-  // Change code below this line
+//* Variant 2
+const itemsCategories = document.querySelector("#categories");
 
-  getBalance() {
-    return this.balance;
-  },
+const itemArray = [...itemsCategories.children];
 
-  getDiscount() {
-    return this.discount;
-  },
+console.log('Numbers of categories: ', itemArray.length);
 
-  setDiscount(value) {
-    this.discount = value;
-  },
+itemArray.forEach(el => {  
+  const title = el.firstElementChild.textContent;
+  
+  console.log('Category: ', title);
 
-  getOrders() {
-    return this.orders;
-  },
+  const itemsList = el.lastElementChild.children;
+  console.log('Elements', itemsList.length);  
+})
 
-  addOrder(cost, order) {
-    this.balance -= cost - cost * this.discount;
-    this.orders.push(order);
-  },
-  // Change code above this line
-};
-
-//* Залиш цей код для перевірки ментором.
-
-customer.setDiscount(0.15);
-console.log(customer.getDiscount()); // 0.15
-customer.addOrder(5000, "Steak");
-console.log(customer.getBalance()); // 19750
-console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]
